@@ -19,12 +19,13 @@ def download_progress(blocks_read, block_size, total_size):
         widgets = [pb.AnimatedMarker(markers='←↖↑↗→↘↓↙'), ' ', pb.Percentage(),
                    ' ', pb.Bar(), ' ', pb.ETA(), ' ', pb.FileTransferSpeed()]
         download_progress.progress_bar = pb.ProgressBar(widgets=widgets,
-            maxval=(total_size/block_size) + 1).start()
+            maxval=(total_size + block_size)).start()
 
-    download_progress.progress_bar.update(blocks_read)
+    download_progress.progress_bar.update(blocks_read * block_size)
 
 def _download(out_path, url):
     (_, headers) = urlretrieve(url, out_path, reporthook=download_progress)
+    download_progress.progress_bar.finish()
 
 def download():
     start = dt.now()
