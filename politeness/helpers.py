@@ -44,7 +44,7 @@ def __format_doc_str(doc_text):
         result = {'parses': [], 'sentences': []}
         for dep in raw['deps']:
             result['parses'].append(clean_depparse(dep))
-        result['sentences'].append(clean_treeparse(raw['sent']))
+        result['sentences'].append(raw['sent'])
         results.append(result)
 
     return results
@@ -61,8 +61,7 @@ def __format_doc_dict(doc_text, doc_parses):
         for dep in not_raw['deps']:
             result['parses'].append(dep)
         result['sentences'].append(not_raw['sent'])
-
-        results.append(result)
+        results = result
 
     return results
 
@@ -76,7 +75,7 @@ def format_doc(doc_text, doc_parses=None):
     if doc_parses is None:
         results = __format_doc_str(doc_text)
     else:
-        results = __format_doc_dict(doc_text, doc_parses)
+        results = __format_doc_dict(doc_text, doc_parses) #[0]
 
     return results
 
@@ -101,21 +100,6 @@ def clean_depparse(dep):
     return str(dep['dep'] + "(" + dep['governorGloss'].lower() + "-" +
                str(dep['governor']) + ", " + dep['dependentGloss'] + "-" +
                str(dep['dependent']) + ")")
-
-
-def clean_treeparse(tree):
-    """
-    Given a string representation of a syntax tree, clean it up using a series
-    of regular expressions.
-    """
-    cleaned_tree = re.sub(r' {2,}', ' ', tree)
-    cleaned_tree = re.sub(r'\n', '', cleaned_tree)
-    cleaned_tree = re.sub(r'\([^\s]*\s', '', cleaned_tree)
-    cleaned_tree = re.sub(r'\)', '', cleaned_tree)
-    cleaned_tree = re.sub(r'-LRB-', '(', cleaned_tree)
-    cleaned_tree = re.sub(r'-RRB-', ')', cleaned_tree)
-
-    return cleaned_tree
 
 
 def get_parses(sent, parses=None):
@@ -146,7 +130,6 @@ def get_parses(sent, parses=None):
             response.raise_for_status()
             for sentence in response.json()['sentences']:
                 parse['deps'] = sentence['enhancedPlusPlusDependencies']
-                #print(parse['deps'])
                 parse['sent'] = sent
         except Exception as e:
             sys.stderr.write('Exception\n')

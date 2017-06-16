@@ -34,14 +34,14 @@ class HelpersTestCase(unittest.TestCase):
               'nsubj(please-5, you-4)', 'dobj(please-5, share-6)',
               'dep(please-5, it-7)', 'punct(please-5, ?-8)']}
             ],
-            [{'sentences': ['Sorry : I dont want to hack the system!!'],
+            [{'sentences': ['Sorry :) I dont want to hack the system!!'],
               'parses': ['ROOT(root-0, :-RRB--2)', 'amod(:-rrb--2, Sorry-1)',
               'nsubj(want-5, I-3)', 'nsubj:xsubj(hack-7, I-3)',
               'aux(want-5, dont-4)', 'acl:relcl(:-rrb--2, want-5)',
               'mark(hack-7, to-6)', 'xcomp(want-5, hack-7)',
               'det(system-9, the-8)', 'dobj(hack-7, system-9)',
               'nummod(:-rrb--2, !!-10)']},
-             {'sentences': [': is there another way?'],
+             {'sentences': [':) is there another way?'],
               'parses': ['ROOT(root-0, :-RRB--1)', 'acl(:-rrb--1, is-2)',
               'expl(is-2, there-3)', 'det(way-5, another-4)',
               'nsubj(is-2, way-5)', 'punct(:-rrb--1, ?-6)']}
@@ -97,11 +97,11 @@ class HelpersTestCase(unittest.TestCase):
                 'aux(please-5, would-3)', 'nsubj(please-5, you-4)',
                 'dobj(please-5, share-6)', 'dep(please-5, it-7)',
                 'punct(please-5, ?-8)']}
-        expected = [{'sentences': ['If yes would you please share it?'],
-                     'parses': ['ROOT(root-0, please-5)', 'dep(please-5, If-1)',
-                     'dep(please-5, yes-2)', 'aux(please-5, would-3)',
-                     'nsubj(please-5, you-4)', 'dobj(please-5, share-6)',
-                     'dep(please-5, it-7)', 'punct(please-5, ?-8)']}]
+        expected = {'sentences': ['If yes would you please share it?'],
+                    'parses': ['ROOT(root-0, please-5)', 'dep(please-5, If-1)',
+                    'dep(please-5, yes-2)', 'aux(please-5, would-3)',
+                    'nsubj(please-5, you-4)', 'dobj(please-5, share-6)',
+                    'dep(please-5, it-7)', 'punct(please-5, ?-8)']}
         for sent, deps in data.items():
             actual = helpers.format_doc(sent, deps)
             self.assertEqual(expected, actual)
