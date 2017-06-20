@@ -13,9 +13,10 @@ from politeness.vectorizer import PolitenessFeatureVectorizer
 
 
 class Classifier(object):
-    def __init__(self):
+    def __init__(self, verbose=False):
         self.classifier = None
         self.vectorizer = None
+        self.verbose = verbose
 
 
     def train(self, documents, ntesting=500):
@@ -74,15 +75,17 @@ class Classifier(object):
             probs = self._score(doc)
             polite.append(probs['polite'])
             impolite.append(probs['impolite'])
-            print("\n====\nSentence " + str(i) + ":\n" + str(doc['sentences'][0]))
-            print("\tP(polite) = %.3f" % probs['polite'])
-            print("\tP(impolite) = %.3f" % probs['impolite'])
+            if self.verbose:
+                print("\n====\nSentence " + str(i) + ":\n" + str(doc['sentences'][0]))
+                print("\tP(polite) = %.3f" % probs['polite'])
+                print("\tP(impolite) = %.3f" % probs['impolite'])
 
             output.append({str(doc['sentences'][0]): [polite[i], impolite[i]]})
 
-        print("\n====\nDocument:")
-        print("\tP(polite) = %.3f" % np.mean(polite))
-        print("\tP(impolite) = %.3f" % np.mean(impolite))
+        if self.verbose:
+            print("\n====\nDocument:")
+            print("\tP(polite) = %.3f" % np.mean(polite))
+            print("\tP(impolite) = %.3f" % np.mean(impolite))
 
         output.append({"document": [np.mean(polite), np.mean(impolite)]})
         return output

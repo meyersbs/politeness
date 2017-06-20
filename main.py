@@ -7,7 +7,7 @@ def _train(args):
     classifier.train(args.documents, args.ntesting)
 
 def _predict(args):
-    classifier = Classifier()
+    classifier = Classifier(verbose=True)
     classifier.predict(args.documents)
 
 def _download(args):
