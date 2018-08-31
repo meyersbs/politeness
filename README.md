@@ -100,7 +100,7 @@ cls.predict(data_dict)
 * Info about Cristian & Mortiz' work: http://cs.cornell.edu/~cristian/Politeness.html
 * A web interface to the politeness model: http://politeness.mpi-sws.org/
 * The Stanford Politeness Corpus: http://cs.cornell.edu/~cristian/Politeness_files/Stanford_politeness_corpus.zip
-* The Stanford Politeness Corpus as compressed JSON containing the tree and dependency parses used to train the model in version 2.00: [Wikipedia](http://people.rc.rit.edu/~bsm9339/corpora/stanford_politeness/wikipedia.parsed.json.gz) (~2GB; ~8GB uncompressed). [Stack Exchange](http://people.rc.rit.edu/~bsm9339/corpora/stanford_politeness/stack-exchange.parsed.json.gz) (~4GB; ~16GB uncompressed).
+* The Stanford Politeness Corpus as compressed JSON containing the tree and dependency parses used to train the model in version 2.00: [Wikipedia](http://people.rc.rit.edu/~bsm9339/corpora/stanford_politeness/wikipedia.parsed.json) (~2GB; ~8GB uncompressed). [Stack Exchange](http://people.rc.rit.edu/~bsm9339/corpora/stanford_politeness/stack-exchange.parsed.json) (~4GB; ~16GB uncompressed).
 
 ### Contact
 
