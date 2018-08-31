@@ -7,7 +7,9 @@ In this version, the codebase has been refactored into a package-able state so i
 
 #### Version 2.00 (released March 2017)
 
-[Details](https://github.com/meyersbs/politeness/tree/eee3c5f8397c422825d5a76a4e8ff4bbfc17a310)
+A port of the codebase from Python 2 to Python 3. The politeness classifier has been retrained and repickled using the modern versions of `pickle`, `scikit-learn`, `scipy`, `numpy`, and `nltk`.
+
+The original training data from Stack Exchange and Wikipedia has been included in the `/corpora/` folder at the root of this project. If you wish to retrain the model, you will either need to use `/corpora/stack-exchange.annotated.csv` and `/corpora/wikipedia.annotated.csv` in combination with the Stanford CoreNLP dependency parser to generate the documents in the expected format for `/scripts/train_model.py`. Because this is a royal pain, please feel free to use the preparsed files (linked to under <b>Further Resources</b>)! Simply download an extract these two files into `/corpora/`.
 
 #### Version 1.01 (released October 2014)
 
@@ -92,6 +94,13 @@ data_dict = {'sentence': 'If yes would you please share it?',
                         'dep(please-5, it-7)', 'punct(please-5, ?-8)']}
 cls.predict(data_dict)
 ```
+
+### Further Resources
+
+* Info about Cristian & Mortiz' work: http://cs.cornell.edu/~cristian/Politeness.html
+* A web interface to the politeness model: http://politeness.mpi-sws.org/
+* The Stanford Politeness Corpus: http://cs.cornell.edu/~cristian/Politeness_files/Stanford_politeness_corpus.zip
+* The Stanford Politeness Corpus as compressed JSON containing the tree and dependency parses used to train the model in version 2.00: [Wikipedia](http://people.rc.rit.edu/~bsm9339/corpora/stanford_politeness/wikipedia.parsed.json.gz) (~2GB; ~8GB uncompressed). [Stack Exchange](http://people.rc.rit.edu/~bsm9339/corpora/stanford_politeness/stack-exchange.parsed.json.gz) (~4GB; ~16GB uncompressed).
 
 ### Contact
 
